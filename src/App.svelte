@@ -3,8 +3,8 @@
   import viteLogo from "/vite.svg";
 </script>
 
-<main>
-  <div>
+<main class="flex flex-col items-center justify-center hero min-h-screen">
+  <div class="flex flex-row gap-10">
     <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
       <img src={viteLogo} class="logo" alt="Vite Logo" />
     </a>
@@ -12,5 +12,7 @@
       <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
     </a>
   </div>
-  <h1>Welcome to Arweave Frontier: Build on the Edge of Blockchain</h1>
+  <h1 class="text-3xl">
+    Welcome to Arweave Frontier: Build on the Edge of Blockchain
+  </h1>
 </main>
