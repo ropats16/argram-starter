@@ -1,19 +1,10 @@
 <script>
   import { profile } from "../store.js";
   import { take } from "ramda";
-  import othent from "othent";
 
-  $: name = $profile ? $profile.given_name + $profile.family_name : "";
+  async function handleConnect() {}
 
-  async function handleConnect() {
-    $profile = await othent.logIn();
-    console.log($profile);
-  }
-
-  async function handleDisconnect() {
-    await othent.logOut();
-    $profile = null;
-  }
+  async function handleDisconnect() {}
 </script>
 
 <div class="navbar bg-base-100">

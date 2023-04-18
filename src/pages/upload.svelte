@@ -13,9 +13,9 @@
   let confirmDlg = false;
   let tx = "";
 
-  async function doDeploy(e) {}
-
   $: notValid = !(files && title !== "");
+
+  async function doDeploy(e) {}
 </script>
 
 <section class="hero min-h-screen bg-base-100 items-start">

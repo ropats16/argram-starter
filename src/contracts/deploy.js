@@ -1,5 +1,5 @@
-import { getAddress } from 'permawebjs/wallet';
 import fs from 'fs';
+import { getAddress } from 'permawebjs/wallet';
 import { createTransaction } from 'permawebjs/transaction';
 
 const key = JSON.parse(fs.readFileSync('wallet.json').toString());
@@ -19,7 +19,7 @@ const inputTags = [
 
 const tx = await createTransaction({ data: contractSource, key: key, environment: 'mainnet', type: 'data', options: { tags: inputTags, signAndPost: true } });
 
-console.log("Transaction result for contract source with permawebJS", tx);
+// contractSourceId = "";
 
 if (tx.postedTransaction.status === 400) {
   throw new Error('Not enough $AR in wallet to upload pst!');
