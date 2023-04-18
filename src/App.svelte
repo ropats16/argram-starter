@@ -1,18 +1,38 @@
 <script>
-  import svelteLogo from "./assets/svelte.svg";
-  import viteLogo from "/vite.svg";
+  // @ts-nocheck
+
+  import { Route, router } from "tinro";
+  import Navbar from "./components/navbar.svelte";
+  import Upload from "./pages/upload.svelte";
+  import View from "./pages/view.svelte";
+  import Start from "./pages/start.svelte";
+  import { profile } from "./store";
+
+  router.mode.hash();
+  router.subscribe((_) => window.scrollTo(0, 0));
 </script>
 
-<main class="flex flex-col items-center justify-center hero min-h-screen">
-  <div class="flex flex-row gap-10">
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1 class="text-3xl">
-    Welcome to Arweave Frontier: Build on the Edge of Blockchain
-  </h1>
+<Navbar />
+<main>
+  <Route path="/">
+    {#if $profile}
+      <Upload />
+    {:else}
+      <Start />
+    {/if}
+  </Route>
+  <Route path="/upload">
+    {#if $profile}
+      <Upload />
+    {:else}
+      <Start />
+    {/if}
+  </Route>
+  <Route path="/view">
+    {#if $profile}
+      <View />
+    {:else}
+      <Start />
+    {/if}
+  </Route>
 </main>
