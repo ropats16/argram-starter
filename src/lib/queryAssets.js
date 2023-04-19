@@ -9,13 +9,16 @@ export async function getAssetData() {
     },
     body: JSON.stringify({ query: idQuery() })
   })
+    // Response clean up to get usable data object
     .then(res => res.json())
     .then(({ data }) => Object.values(data.transactions))
     .then(edges => edges.map((node) => {
+      // Fetching relevant data from the usable data object
       node.map((sub) =>
         assets.push({
           id: sub.node?.id,
           image: `https://arweave.net/${sub.node?.id}`,
+          // Search for tag with specific name and store its value
           title: prop('value', find(propEq('name', 'Title'), sub.node.tags)),
           description: prop('value', find(propEq('name', 'Description'), sub.node.tags)),
           type: prop('value', find(propEq('name', 'Type'), sub.node.tags)),
@@ -25,15 +28,15 @@ export async function getAssetData() {
         })
       )
     }))
+  // return array of relevant all assets for a given contract source
   return assets
 }
 
 function idQuery() {
   return `
 query {
-  transactions(tags: [
-      { name: "Contract-Src", values: ["jEdfetcqnAB_CAzRynrH9p0ekFIIlmaBmXqtJEwZKaE"] }
-    ]) {
+  /* Add query tags here */
+  {
     edges {
       node {
         id

@@ -1,7 +1,9 @@
 <script>
   import { profile } from "../store";
 
-  async function handleConnect() {}
+  async function handleConnect() {
+    // // code for handling connection with app
+  }
 </script>
 
 <main>

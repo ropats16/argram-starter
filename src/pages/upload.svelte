@@ -15,13 +15,13 @@
 
   $: notValid = !(files && title !== "");
 
-  async function doDeploy(e) {}
+  async function createPost(e) {}
 </script>
 
 <section class="hero min-h-screen bg-base-100 items-start">
   <div class="flex flex-col items-center justify-start">
     <h1 class="text-2xl">Upload</h1>
-    <form class="form mt-16 px-4 md:px-0" on:submit|preventDefault={doDeploy}>
+    <form class="form mt-16 px-4 md:px-0" on:submit|preventDefault={createPost}>
       <div class="flex flex-col justify-center">
         <div>
           {#if files && files[0]}

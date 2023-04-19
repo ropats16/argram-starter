@@ -17,7 +17,9 @@
     Images may take a few minutes to update depending on network congestion...
   </p>
   <hr class="w-1/2 mt-2" />
+  <!-- Get relevant data for assets from getAssetData function -->
   {#await assetData then assets}
+    <!-- If assets array is non empty, map over assets to render data -->
     {#if assets.length > 0}
       <div class="flex-col">
         {#each assets as asset}
