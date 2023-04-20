@@ -41,8 +41,7 @@
   </div>
   <div class="navbar-end md:flex gap-4">
     {#if $profile}
-      <button class="btn" disabled>{name}</button>
-      <button class="btn btn-ghost" on:click={handleDisconnect}>Log Out</button>
+      <button class="btn btn-ghost" on:click={handleDisconnect}>{name}</button>
     {:else}
       <button on:click={handleConnect} class="btn btn-ghost">Connect</button>
     {/if}

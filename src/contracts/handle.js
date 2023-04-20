@@ -51,8 +51,23 @@ export async function handle(state, action) {
 
   // function to update comments
   if (input.function === 'addComment') {
-    state.comments.push({ comment: input.comment, user: input.user });
+    state.comments.push({ comment: input.txnData.comment, username: input.txnData.username, id: action.caller });
     return { state };
   }
-  throw new ContractError('input.function not found!')
+
+  // function to add likes
+  if (input.function === 'likePost') {
+    if (Object.keys(state.likes).includes(action.caller)) {
+
+      throw new ContractError('User has voted!')
+    } else {
+      state.likes[caller] = Object.keys(state.likes).length + 1;
+
+      return { state };
+    }
+  }
+
+  else {
+    throw new ContractError('Unrecognised function \"' + input.function + '\"');
+  }
 }
