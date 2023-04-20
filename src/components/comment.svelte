@@ -1,27 +1,26 @@
 <script>
   import {
-    readContractState,
-    writeContract,
-    writeWOthent,
+    writeContractWOthent,
+    readContractWOthent,
   } from "permawebjs/contract";
   import { profile } from "../store";
-  import { userDetails } from "permawebjs/auth";
   import { take } from "ramda";
-  import { onMount } from "svelte";
   import Deploy from "../dialogs/deploy.svelte";
   import Error from "../dialogs/error.svelte";
   import Confirm from "../dialogs/confirm.svelte";
+  import { onMount } from "svelte";
 
   export let id = "";
 
   let comments = {};
-  let commentsData = readComments();
+
   let commentsArray = [];
 
   let deployDlg = false;
   let errorMessage = "";
   let errorDlg = false;
   let confirmDlg = false;
+
   let tx = "";
 
   async function addComment(e) {
@@ -40,21 +39,21 @@
 <section
   class="hero pb-4 bg-base-100 flex flex-col border-solid border-2 border-slate-300 rounded-lg"
 >
-  <!-- commentsData calls readComments() and stores result in var commentsArray  -->
-  <!-- Each comment component is associated with a post, commentsArray are returned for given post -->
-  {#await commentsData then commentsArray}
-    <!-- Check if commentsArray has comments or is an empty array -->
-    {#if commentsArray.length > 0}
-      <!-- Map over each comment from the array and render it -->
-      {#each commentsArray as comment}
-        <p
-          class="text-sm px-4 md:px-12 gap-2 flex flex-row items-center justify-start w-full"
-        >
-          <strong>{take(5, comment.user)}</strong>: {comment.comment}
-        </p>
-      {/each}
-    {/if}
-  {/await}
+  <!-- Check if commentsArray has comments or is an empty array -->
+  {#if commentsArray.length > 0}
+    <!-- Map over each comment from the array and render it -->
+    {#each commentsArray as comment}
+      <p
+        class="text-sm px-4 md:px-12 gap-2 flex flex-row items-center justify-start w-full"
+      >
+        <strong
+          >{comment.username && comment.username != ""
+            ? comment.username
+            : take(5, comment.id)}</strong
+        >: {comment.comment}
+      </p>
+    {/each}
+  {/if}
   <form
     class="form px-4 md:px-12 mx-0 gap-2 flex flex-row items-center justify-center w-full"
     on:submit|preventDefault={addComment}
