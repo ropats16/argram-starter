@@ -1,15 +1,17 @@
 <script>
+  // imports
   import { profile } from "../store.js";
   import { Othent } from "permawebjs/auth";
 
+  // variable to store appended user first and last name
   $: name = $profile ? $profile.given_name + " " + $profile.family_name : "";
 
   async function handleConnect() {
-    // code for handling connection with app
+    // write code for handling connection with app
   }
 
   async function handleDisconnect() {
-    // code for logging out of app
+    // write code for logging out of app
   }
 </script>
 
@@ -30,6 +32,7 @@
           /></svg
         >
       </button>
+      <!-- dropdown for switching pages -->
       <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         <li><a href="/upload">Upload</a></li>
         <li><a href="/view">View</a></li>
@@ -41,8 +44,11 @@
   </div>
   <div class="navbar-end md:flex gap-4">
     {#if $profile}
+      <!-- displays connected user's name from variable 'name' -->
+      <!-- doubles as the log out button calling handle disconnect on click -->
       <button class="btn btn-ghost" on:click={handleDisconnect}>{name}</button>
     {:else}
+      <!-- connect button to handle log in -->
       <button on:click={handleConnect} class="btn btn-ghost">Connect</button>
     {/if}
   </div>

@@ -2,7 +2,6 @@
   import Modal from "../components/modal.svelte";
   import { createEventDispatcher } from "svelte";
   export let open = false;
-  export let tx = "";
   const dispatch = createEventDispatcher();
 </script>
 
@@ -11,15 +10,12 @@
     class="m-4 border-4 border-success pb-8 px-2 flex flex-col items-center justify-center"
   >
     <h3 class="mb-8 text-3xl bg-success text-white p-2 mt-4">Success!</h3>
-    <p class="text-sm">{tx}</p>
     <!--
     <blockquote>
       NOTE: When uploading large images it may take a few minutes for the image
       to show up on the network.
     </blockquote>
     -->
-    <a href="https://arweave.net/tx/{tx}" class="link" target="_blank"
-      >View Atomic TX</a
-    >
+    <a href="/view" class="link" target="_blank">View Posts</a>
   </div>
 </Modal>

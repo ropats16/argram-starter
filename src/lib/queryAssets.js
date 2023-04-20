@@ -1,7 +1,12 @@
+// imports
 import { prop, propEq, find, pluck, filter } from 'ramda';
 
+// function to fetch posts create from defined contract source
 export async function getAssetData() {
+  // initialising empty array
   let assets = []
+
+  // fetch request
   await fetch(`https://arweave.net/graphql`, {
     method: 'POST',
     headers: {
@@ -9,29 +14,33 @@ export async function getAssetData() {
     },
     body: JSON.stringify({ query: idQuery() })
   })
-    // Response clean up to get usable data object
+    // response cleanup
     .then(res => res.json())
     .then(({ data }) => Object.values(data.transactions))
     .then(edges => edges.map((node) => {
-      // Fetching relevant data from the usable data object
-      node.map((sub) =>
+      node.map((sub) => {
+        // creating object of relevant data for each asset and pushing to 'assets' array
+        // contains transaction id, web url for image, title, description, content type, topics (hashtags), post owner, timestamp
         assets.push({
           id: sub.node?.id,
           image: `https://arweave.net/${sub.node?.id}`,
-          // Search for tag with specific name and store its value
-          title: prop('value', find(propEq('name', 'Title'), sub.node.tags)),
-          description: prop('value', find(propEq('name', 'Description'), sub.node.tags)),
-          type: prop('value', find(propEq('name', 'Type'), sub.node.tags)),
+          title: sub.node.tags.find(t => t.name === 'Title')?.value,
+          description: sub.node.tags.find(t => t.name === 'Description')?.value,
+          type: sub.node.tags.find(t => t.name === 'Type')?.value,
           topics: pluck('value', filter(t => t.name.includes('Topic:'), sub.node.tags)),
-          owner: prop('value', find(propEq('name', 'Creator'), sub.node.tags)) || sub.node.owner.address,
+          owner: sub.node.tags.find(t => t.name === 'Creator')?.value || sub.node.owner.address,
+          ownername: sub.node.tags.find(t => t.name === 'Creator-Name')?.value,
           timestamp: sub.node?.block?.timestamp || Date.now() / 1000
-        })
+        });
+      }
       )
     }))
-  // return array of relevant all assets for a given contract source
+
+  // returns 'assets' array on function call
   return assets
 }
 
+// query requesting posts referencing the defined contract source
 function idQuery() {
   return `
 query {

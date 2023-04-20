@@ -1,11 +1,14 @@
 <script>
-  import { profile } from "../store";
+  // imports
+  import { profile } from "../store.js";
+  import { Othent } from "permawebjs/auth";
 
   async function handleConnect() {
-    // // code for handling connection with app
+    // write code for handling connection with app
   }
 </script>
 
+<!-- landing page ui -->
 <main>
   <section class="hero min-h-screen bg-base-100">
     <div class="hero-content flex-col space-y-16">
@@ -15,6 +18,7 @@
         images <br /> as tradeable atomic assets.
       </p>
       <div class="flex space-x-4">
+        <!-- connect button to handle log in -->
         <button class="btn btn-primary" on:click={handleConnect}>Connect</button
         >
       </div>
