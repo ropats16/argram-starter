@@ -14,8 +14,8 @@
     <div class="hero-content flex-col space-y-16">
       <h1 class="text-8xl font-bold hover:text-primary">ArGram</h1>
       <p class="text-2xl dark:text-white text-center">
-        A decentralised Instagram on Arweave <br /> that allows you to post your
-        images <br /> as tradeable atomic assets.
+        A decentralised image sharing application on Arweave <br /> that allows
+        you to post your images <br /> as atomic assets.
       </p>
       <div class="flex space-x-4">
         <!-- connect button to handle log in -->
