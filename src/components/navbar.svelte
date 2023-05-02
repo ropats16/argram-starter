@@ -3,9 +3,6 @@
   import { profile } from "../store.js";
   import { Othent } from "permawebjs/auth";
 
-  // variable to store appended user first and last name
-  $: name = $profile ? $profile.given_name + " " + $profile.family_name : "";
-
   async function handleConnect() {
     // write code for handling connection with app
   }
