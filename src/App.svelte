@@ -13,7 +13,7 @@
   router.subscribe((_) => window.scrollTo(0, 0));
 </script>
 
-<main>
+<main class="static">
   <!-- Renders Navbar component -->
   <Navbar />
   <Route path="/">

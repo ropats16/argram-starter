@@ -3,7 +3,7 @@
   import {
     readContractWOthent,
     writeContractWOthent,
-  } from "permawebjs/contract";
+  } from "arweavekit/contract";
   import { profile } from "../store";
   import { onMount } from "svelte";
 

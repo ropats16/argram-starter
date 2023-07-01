@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { postAsset } from "../lib/post";
+  // import { postAsset } from "../lib/post";
   import Deploy from "../dialogs/deploy.svelte";
   import Error from "../dialogs/error.svelte";
   import Confirm from "../dialogs/confirm.svelte";
@@ -27,7 +27,7 @@
 </script>
 
 <!-- upload page ui -->
-<section class="hero min-h-screen bg-base-100 items-start">
+<section class="hero min-h-screen bg-black items-start mt-10">
   <div class="flex flex-col items-center justify-start">
     <!-- input form for calling 'createPost' function -->
     <form class="form mt-16 px-4 md:px-0" on:submit|preventDefault={createPost}>

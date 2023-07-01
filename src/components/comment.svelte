@@ -3,7 +3,7 @@
   import {
     writeContractWOthent,
     readContractWOthent,
-  } from "permawebjs/contract";
+  } from "arweavekit/contract";
   import { profile } from "../store";
   import { take } from "ramda";
   import Deploy from "../dialogs/deploy.svelte";
@@ -38,7 +38,7 @@
 </script>
 
 <section
-  class="hero pb-4 bg-base-100 flex flex-col border-solid border-2 border-slate-300 rounded-lg"
+  class=" pb-4 bg-black flex flex-col self-center border-solid border-2 border-slate-300 rounded-lg"
 >
   <div class="flex flex-col self-start m-2">
     <!-- ensures commentsArray has comments -->
@@ -57,13 +57,13 @@
       {/each}
     {/if}
   </div>
-  <hr class="w-10/12" />
+  <hr class="w-10/12 self-center" />
   <!-- input form for calling 'addComment' function -->
   <form
     class="form px-4 md:px-12 mx-0 gap-2 flex flex-row items-center justify-center w-full"
     on:submit|preventDefault={addComment}
   >
-    <div class="form-control w-full">
+    <div class="form-control w-full flex">
       <label for="comment" class="label">Comments</label>
       <!-- input field for comment text -->
       <!-- bind:value adds the comment text to the 'comments' variable -->
@@ -78,7 +78,7 @@
     </div>
     <!-- button to submit comment form -->
     <!-- button is disabled until valid comment is passed in -->
-    <button disabled={!comments[id]} class="btn btn-block w-1/4">
+    <button disabled={!comments[id]} class="btn btn-block w-1/4 self-end">
       Comment
     </button>
   </form>

@@ -9,7 +9,7 @@
 </script>
 
 <!-- view page ui -->
-<section class="hero min-h-screen bg-base-100 flex flex-col">
+<section class="hero min-h-screen bg-black flex flex-col mt-10">
   <p>Images, comments and likes may take sometime to load...</p>
   <hr class="w-1/2 mt-2" />
   <!-- calls assetData variable -->

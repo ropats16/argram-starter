@@ -1,7 +1,7 @@
 <script>
   // imports
   import { profile } from "../store.js";
-  import { Othent } from "permawebjs/auth";
+  import { Othent } from "arweavekit/auth";
 
   async function handleConnect() {
     // write code for handling connection with app
@@ -12,7 +12,7 @@
   }
 </script>
 
-<div class="navbar bg-base-100 drop-shadow-md mb-10">
+<div class="navbar bg-black drop-shadow-md h-20 fixed top-0">
   <div class="navbar-start">
     <div class="dropdown dropdown-hover">
       <button class="btn btn-square btn-ghost">
@@ -30,23 +30,29 @@
         >
       </button>
       <!-- dropdown for switching pages -->
-      <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+      <ul class="dropdown-content menu p-2 shadow bg-black rounded-box w-52">
         <li><a href="/upload">Upload</a></li>
         <li><a href="/view">View</a></li>
       </ul>
     </div>
   </div>
   <div class="navbar-center md:flex">
-    <a href="/" class="btn btn-ghost normal-case text-2xl">ArGram</a>
+    <a
+      href="/"
+      class="btn btn-ghost normal-case text-3xl font-lobster text-white"
+      >ArGram</a
+    >
   </div>
   <div class="navbar-end md:flex gap-4">
     {#if $profile}
       <!-- displays connected user's name from variable 'name' -->
       <!-- doubles as the log out button calling handle disconnect on click -->
-      <button class="btn btn-ghost" on:click={handleDisconnect}>{name}</button>
+      <button class="btn btn-ghost" on:click={handleDisconnect}
+        >{$profile.name}</button
+      >
     {:else}
       <!-- connect button to handle log in -->
-      <button on:click={handleConnect} class="btn btn-ghost">Connect</button>
+      <button on:click={handleConnect} class="btn btn-ghost">Log In</button>
     {/if}
   </div>
 </div>
